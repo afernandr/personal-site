@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-surface: #0e0e0e;
+    --color-surface-container: #191919;
+    --color-surface-container-high: #1f1f1f;
+    --color-surface-container-highest: #262626;
+    --color-surface-container-low: #131313;
+    --color-on-surface: #e5e5e5;
+    --color-on-surface-variant: #ababab;
+    --color-primary: #02e600;
+    --color-primary-fixed: #77ff61;
+    --color-outline: #757575;
+  }
+
+  .light {
+    --color-surface: #ffffff;
+    --color-surface-container: #eeeeee;
+    --color-surface-container-high: #e8e8e8;
+    --color-surface-container-highest: #e2e2e2;
+    --color-surface-container-low: #f5f5f5;
+    --color-on-surface: #1b1b1b;
+    --color-on-surface-variant: #474747;
+    --color-primary: #026e00;
+    --color-primary-fixed: #026e00;
+    --color-outline: #777777;
+  }
+}

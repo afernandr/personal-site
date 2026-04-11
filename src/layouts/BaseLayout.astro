@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Andrés Fernández - Software Engineer" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script is:inline>
+      (function() {
+        const saved = localStorage.getItem('theme');
+        const html = document.documentElement;
+        if (saved === 'light') {
+          html.classList.remove('dark');
+          html.classList.add('light');
+        }
+      })();
+    </script>
+  </head>
+  <body class="bg-surface text-on-surface font-body antialiased transition-colors duration-300">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background-color: #02e600;
+    color: #014c00;
+  }
+</style>

@@ -1,0 +1,44 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-outline/15 light:border-light-outline/15 mt-auto">
+  <div class="max-w-7xl mx-auto px-6 py-8">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="font-mono text-xs text-on-surface-variant light:text-light-on-surface-variant">
+        &copy; {currentYear} AF_TERMINAL v1.0.4
+      </p>
+      
+      <div class="flex items-center gap-6">
+        <a 
+          href="https://github.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="font-mono text-xs text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors flex items-center gap-1"
+        >
+          &gt; GITHUB
+        </a>
+        <a 
+          href="https://linkedin.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="font-mono text-xs text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors flex items-center gap-1"
+        >
+          &gt; LINKEDIN
+        </a>
+        <a 
+          href="https://stackoverflow.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="font-mono text-xs text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors flex items-center gap-1"
+        >
+          &gt; STACK_OVERFLOW
+        </a>
+      </div>
+      
+      <p class="font-mono text-xs text-on-surface-variant light:text-light-on-surface-variant">
+        LOAD_TIME: {Math.floor(Math.random() * 50 + 10)}ms
+      </p>
+    </div>
+  </div>
+</footer>

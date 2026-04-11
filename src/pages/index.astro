@@ -1,0 +1,119 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const competencies = [
+  {
+    icon: 'cloud_done',
+    title: 'Cloud Infrastructure',
+    description: 'Scaling applications across distributed nodes with Kubernetes, AWS, and Terraform.',
+  },
+  {
+    icon: 'code_blocks',
+    title: 'Frontend Engineering',
+    description: 'Building performance-first UIs using React, TypeScript, and architectural patterns.',
+  },
+  {
+    icon: 'database',
+    title: 'Data Architecture',
+    description: 'Managing complex data flows with PostgreSQL, Redis, and message brokers.',
+  },
+];
+
+const projects = [
+  {
+    name: 'Terminal OS v2.0',
+    description: 'A web-based operating system shell designed for maximum developer productivity. Features integrated VS Code instances and Docker management.',
+    tags: ['React', 'WebAssembly', 'Rust'],
+  },
+];
+---
+
+<PageLayout title="Andrés Fernández - Software Engineer">
+  <section class="min-h-[calc(100vh-4rem)] flex bg-surface light:bg-light-surface">
+    <div class="max-w-7xl mx-auto px-6 py-12 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <!-- Left Column -->
+        <div class="lg:col-span-7 space-y-16 pt-8">
+          <div class="space-y-2">
+            <p class="font-mono text-xs text-primary light:text-light-primary uppercase tracking-widest">
+              SYSTEM_INIT / PORTFOLIO_V2
+            </p>
+            <h1 class="font-headline text-6xl font-semibold leading-none tracking-tight text-on-surface light:text-light-on-surface">
+              ANDRÉS<br />FERNÁNDEZ
+            </h1>
+            <p class="font-mono text-sm text-primary light:text-light-primary uppercase tracking-wider mt-4">
+              Software Engineer
+            </p>
+          </div>
+          
+          <p class="font-body text-lg text-on-surface-variant light:text-light-on-surface-variant max-w-lg leading-relaxed">
+            Building the future of the web through distributed systems and minimalist design. 
+            I transform complex architectural challenges into simple, elegant, and high-performance code.
+          </p>
+          
+          <div class="flex gap-4">
+            <button class="font-mono text-sm text-primary light:text-light-primary uppercase tracking-wider transition-colors flex items-center gap-2 group">
+              <span class="group-hover:translate-x-1 transition-transform">&gt;</span>
+              <span>VIEW_PROJECTS</span>
+            </button>
+            <button class="font-mono text-sm text-on-surface-variant light:text-light-on-surface-variant uppercase tracking-wider hover:text-primary light:hover:text-light-primary transition-colors">
+              [ CONTACT_ME ]
+            </button>
+          </div>
+        </div>
+        
+        <!-- Right Column - Latest Work -->
+        <div class="lg:col-span-5">
+          <div class="space-y-8">
+            <div class="border-l-2 border-primary light:border-light-primary pl-6">
+              <p class="font-mono text-xs text-primary light:text-light-primary uppercase tracking-widest mb-6">
+                LATEST_WORK
+              </p>
+              
+              {projects.map((project) => (
+                <div class="bg-surface-container light:bg-light-surface-container border border-outline/15 light:border-light-outline/15 p-6 hover:border-primary light:hover:border-light-primary transition-colors">
+                  <p class="font-mono text-xs text-on-surface-variant light:text-light-on-surface-variant uppercase tracking-wider mb-2">
+                    Project: {project.name}
+                  </p>
+                  <p class="font-body text-sm text-on-surface-variant light:text-light-on-surface-variant mb-4 leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div class="flex flex-wrap gap-3 mb-4">
+                    {project.tags.map((tag) => (
+                      <span class="font-mono text-xs text-on-surface-variant light:text-light-on-surface-variant">
+                        {`{ ${tag} }`}
+                      </span>
+                    ))}
+                  </div>
+                  <button class="font-mono text-xs text-primary light:text-light-primary uppercase tracking-wider transition-colors">
+                    [ EXPLORE_SOURCE ]
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Core Competencies -->
+      <div class="mt-24">
+        <p class="font-mono text-xs text-primary light:text-light-primary uppercase tracking-widest mb-8">
+          CORE_COMPETENCIES
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {competencies.map((comp) => (
+            <div class="bg-surface-container light:bg-light-surface-container border border-outline/15 light:border-light-outline/15 p-6 hover:border-primary light:hover:border-light-primary transition-colors">
+              <p class="font-mono text-xs text-primary light:text-light-primary mb-3">{comp.icon}</p>
+              <h3 class="font-headline text-lg font-semibold text-on-surface light:text-light-on-surface mb-2">
+                {comp.title}
+              </h3>
+              <p class="font-body text-sm text-on-surface-variant light:text-light-on-surface-variant leading-relaxed">
+                {comp.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

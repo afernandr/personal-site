@@ -1,0 +1,156 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formattedDate = post.data.date.toISOString().split('T')[0];
+const postId = `AF_POST_082`;
+---
+
+<PageLayout title={`${post.data.title} - Blog`} description={post.data.description}>
+  <main class="pt-32 pb-24 px-6 md:px-0 max-w-4xl mx-auto bg-surface light:bg-light-surface">
+    <!-- Header -->
+    <header class="mb-16">
+      <div class="flex items-center gap-4 mb-6 font-mono text-[0.6875rem] uppercase tracking-[0.05em]">
+        <span class="bg-surface-container light:bg-light-surface-container px-2 py-1 text-primary light:text-light-primary">[{formattedDate}]</span>
+        <span class="text-outline light:text-light-outline">|</span>
+        <span class="text-on-surface-variant light:text-light-on-surface-variant">Reading Time: 5 min</span>
+        <span class="text-outline light:text-light-outline">|</span>
+        <span class="text-primary-fixed light:text-light-primary-fixed">ID: {postId}</span>
+      </div>
+      
+      <h1 class="font-mono font-bold text-4xl md:text-6xl leading-tight tracking-tighter mb-8 max-w-3xl uppercase text-on-surface light:text-light-on-surface">
+        {post.data.title}
+      </h1>
+      
+      <div class="h-1 w-24 bg-primary light:bg-light-primary"></div>
+    </header>
+    
+    <!-- Article Grid -->
+    <section class="grid grid-cols-1 md:grid-cols-12 gap-12">
+      <!-- Sidebar -->
+      <aside class="md:col-span-1 hidden md:block">
+        <div class="sticky top-32 flex flex-col gap-6">
+          <button class="text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors" aria-label="Share">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/>
+            </svg>
+          </button>
+          <button class="text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors" aria-label="Bookmark">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+            </svg>
+          </button>
+          <button class="text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors" aria-label="Comment">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/>
+            </svg>
+          </button>
+        </div>
+      </aside>
+      
+      <!-- Article Content -->
+      <article class="md:col-span-11 space-y-8 leading-relaxed text-lg">
+        <div class="prose prose-lg max-w-none
+          prose-headings:font-mono prose-headings:font-bold prose-headings:text-on-surface light:prose-headings:text-light-on-surface
+          prose-p:text-on-surface-variant light:prose-p:text-light-on-surface-variant
+          prose-a:text-primary light:prose-a:text-light-primary prose-a:no-underline hover:prose-a:underline
+          prose-code:font-mono prose-code:text-primary light:prose-code:text-light-primary prose-code:bg-surface-container-low light:prose-code:bg-light-surface-container-low prose-code:px-2 prose-code:py-1 prose-code:rounded-none
+          prose-pre:bg-surface-container-highest light:prose-pre:bg-light-surface-container-highest prose-pre:border prose-pre:border-outline/15
+          prose-blockquote:border-l-4 prose-blockquote:border-primary light:prose-blockquote:border-light-primary prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:font-mono
+          prose-li:font-body light:prose-li:text-light-on-surface-variant">
+          <Content />
+        </div>
+        
+        <!-- Related Posts -->
+        <section class="mt-24 pt-16 border-t border-surface-container-highest light:border-light-surface-container-highest">
+          <h4 class="font-mono text-xs uppercase tracking-[0.2em] mb-8 text-primary light:text-light-primary">Related_Entities</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <a href="/blog" class="bg-surface-container light:bg-light-surface-container p-6 hover:bg-surface-container-high light:hover:bg-light-surface-container-high transition-colors cursor-pointer group block">
+              <div class="font-mono text-[0.6875rem] text-outline light:text-light-outline mb-2">2024.03.12</div>
+              <h5 class="font-mono font-bold text-lg group-hover:text-primary light:group-hover:text-light-primary transition-colors uppercase">Implementing WebAssembly in the Browser</h5>
+            </a>
+            <a href="/blog" class="bg-surface-container light:bg-light-surface-container p-6 hover:bg-surface-container-high light:hover:bg-light-surface-container-high transition-colors cursor-pointer group block">
+              <div class="font-mono text-[0.6875rem] text-outline light:text-light-outline mb-2">2024.02.28</div>
+              <h5 class="font-mono font-bold text-lg group-hover:text-primary light:group-hover:text-light-primary transition-colors uppercase">Distributed State with Raft and Rust</h5>
+            </a>
+          </div>
+        </section>
+      </article>
+    </section>
+  </main>
+</PageLayout>
+
+<style is:global>
+  :root:not(.light) .prose {
+    color: rgba(229, 229, 229, 0.9);
+  }
+  
+  :root:not(.light) .prose h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #e5e5e5;
+    padding-top: 1.5rem;
+  }
+  
+  :root:not(.light) .prose p {
+    color: #ababab;
+    line-height: 1.8;
+  }
+  
+  :root:not(.light) .prose code {
+    font-family: 'JetBrains Mono', monospace;
+    color: #02e600;
+    background-color: #131313;
+  }
+  
+  :root:not(.light) .prose blockquote {
+    background-color: #131313;
+    border-color: #02e600;
+    font-style: italic;
+    font-family: 'JetBrains Mono', monospace;
+    color: #ababab;
+  }
+  
+  :root.light .prose {
+    color: rgba(27, 27, 27, 0.9);
+  }
+  
+  :root.light .prose h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #1b1b1b;
+    padding-top: 1.5rem;
+  }
+  
+  :root.light .prose p {
+    color: #474747;
+    line-height: 1.8;
+  }
+  
+  :root.light .prose code {
+    font-family: 'JetBrains Mono', monospace;
+    color: #026e00;
+    background-color: #f3f3f3;
+  }
+  
+  :root.light .prose blockquote {
+    background-color: #f3f3f3;
+    border-color: #026e00;
+    font-style: italic;
+    font-family: 'JetBrains Mono', monospace;
+    color: #474747;
+  }
+</style>
