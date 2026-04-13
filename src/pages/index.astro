@@ -1,5 +1,6 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import Tag from "../components/Tag.astro";
 
 const competencies = [
     {
@@ -98,21 +99,19 @@ const projects = [
                             {
                                 projects.map((project) => (
                                     <div class="bg-surface-container light:bg-light-surface-container border border-outline/15 light:border-light-outline/15 p-6 hover:border-primary light:hover:border-light-primary transition-colors">
-                                        <p class="font-mono text-xs text-on-surface-variant light:text-light-on-surface-variant uppercase tracking-wider mb-2">
-                                            Project: {project.name}
+                                        <p class="font-mono text-sm font-semibold text-on-surface light:text-light-on-surface uppercase tracking-wider mb-3">
+                                            {project.name}
                                         </p>
                                         <p class="font-body text-sm text-on-surface-variant light:text-light-on-surface-variant mb-4 leading-relaxed">
                                             {project.description}
                                         </p>
-                                        <div class="flex flex-wrap gap-3 mb-4">
+                                        <div class="flex flex-wrap gap-2 mb-4">
                                             {project.tags.map((tag) => (
-                                                <span class="font-mono text-xs text-on-surface-variant light:text-light-on-surface-variant">
-                                                    {`{ ${tag} }`}
-                                                </span>
+                                                <Tag tag={tag} size="sm" />
                                             ))}
                                         </div>
-                                        <button class="font-mono text-xs text-primary light:text-light-primary uppercase tracking-wider transition-colors">
-                                            [ EXPLORE_SOURCE ]
+                                        <button class="px-4 py-2 bg-primary light:bg-light-primary text-white dark:text-[#282828] font-mono text-xs uppercase tracking-wider rounded hover:opacity-90 transition-opacity flex items-center gap-2 w-fit">
+                                            EXPLORE_SOURCE
                                         </button>
                                     </div>
                                 ))

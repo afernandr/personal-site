@@ -1,6 +1,7 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import { getCollection, render } from 'astro:content';
+import Tag from '../../components/Tag.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -29,9 +30,17 @@ const postId = `AF_POST_082`;
         <span class="text-primary-fixed light:text-light-primary-fixed">ID: {postId}</span>
       </div>
       
-      <h1 class="font-mono font-bold text-4xl md:text-6xl leading-tight tracking-tighter mb-8 max-w-3xl uppercase text-on-surface light:text-light-on-surface">
+      <h1 class="font-mono font-bold text-4xl md:text-6xl leading-tight tracking-tighter mb-4 max-w-3xl uppercase text-on-surface light:text-light-on-surface">
         {post.data.title}
       </h1>
+      
+      {post.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mb-6">
+          {post.data.tags.map((tag: string) => (
+            <Tag tag={tag} />
+          ))}
+        </div>
+      )}
       
       <div class="h-1 w-24 bg-primary light:bg-light-primary"></div>
     </header>

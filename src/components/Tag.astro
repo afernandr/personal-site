@@ -1,0 +1,21 @@
+---
+export interface Props {
+    tag: string;
+    size?: "sm" | "md";
+}
+
+const { tag, size = "md" } = Astro.props;
+
+const sizeClasses = {
+    sm: "text-[0.625rem] px-1.5 py-0.5",
+    md: "text-[0.6875rem] px-2 py-1",
+};
+---
+
+<span
+    class={`inline-flex items-center gap-1 font-mono uppercase tracking-wider rounded border bg-surface-container-low light:bg-light-surface-container-low border-outline/30 light:border-light-outline/30 text-on-surface-variant light:text-light-on-surface-variant hover:border-primary/50 light:hover:border-light-primary/50 hover:text-primary light:hover:text-light-primary transition-colors ${sizeClasses[size]}`}
+>
+    <span class="opacity-40">{`{`}</span>
+    <span>{tag}</span>
+    <span class="opacity-40">{`}`}</span>
+</span>

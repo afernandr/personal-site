@@ -1,6 +1,7 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
+import Tag from '../../components/Tag.astro';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -45,11 +46,9 @@ const posts = (await getCollection('blog')).sort(
               <p class="text-on-surface-variant light:text-light-on-surface-variant max-w-2xl text-sm leading-relaxed mb-4">
                 {post.data.description}
               </p>
-              <div class="flex gap-4">
+              <div class="flex flex-wrap gap-2">
                 {post.data.tags.map((tag) => (
-                  <span class="font-mono text-[0.6875rem] uppercase text-primary light:text-light-primary">
-                    {`{ ${tag} }`}
-                  </span>
+                  <Tag tag={tag} />
                 ))}
               </div>
             </div>
