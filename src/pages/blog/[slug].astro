@@ -71,13 +71,19 @@ const postId = `AF_POST_082`;
       <!-- Article Content -->
       <article class="md:col-span-11 space-y-8 leading-relaxed text-lg">
         <div class="prose prose-lg max-w-none
-          prose-headings:font-mono prose-headings:font-bold prose-headings:text-on-surface light:prose-headings:text-light-on-surface
-          prose-p:text-on-surface-variant light:prose-p:text-light-on-surface-variant
+          prose-headings:font-mono prose-headings:font-bold prose-headings:text-on-surface prose-headings:pt-6
+          light:prose-headings:text-light-on-surface
+          prose-p:text-on-surface-variant prose-p:leading-8
+          light:prose-p:text-light-on-surface-variant
           prose-a:text-primary light:prose-a:text-light-primary prose-a:no-underline hover:prose-a:underline
-          prose-code:font-mono prose-code:text-primary light:prose-code:text-light-primary prose-code:bg-surface-container-low light:prose-code:bg-light-surface-container-low prose-code:px-2 prose-code:py-1 prose-code:rounded-none
-          prose-pre:bg-surface-container-highest light:prose-pre:bg-light-surface-container-highest prose-pre:border prose-pre:border-outline/15
-          prose-blockquote:border-l-4 prose-blockquote:border-primary light:prose-blockquote:border-light-primary prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:font-mono
-          prose-li:font-body light:prose-li:text-light-on-surface-variant">
+          prose-code:font-mono prose-code:text-primary prose-code:px-2 prose-code:py-1 prose-code:rounded-none
+          light:prose-code:text-light-primary
+          prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:font-mono
+          light:prose-blockquote:border-light-primary
+          prose-li:font-body prose-li:text-on-surface-variant prose-bold:text-on-surface
+          prose-li strong:text-on-surface
+          light:prose-li:text-light-on-surface-variant light:prose-bold:text-light-on-surface
+          light:prose-li strong:text-light-on-surface">
           <Content />
         </div>
         
@@ -101,65 +107,19 @@ const postId = `AF_POST_082`;
 </PageLayout>
 
 <style is:global>
-  :root:not(.light) .prose {
-    color: rgba(229, 229, 229, 0.9);
+  .prose pre {
+    background-color: var(--color-code-block-bg) !important;
+    border: 1px solid oklch(from var(--color-outline) l c h / 0.15);
+    color: var(--color-on-surface) !important;
   }
-  
-  :root:not(.light) .prose h2 {
+
+  .prose code {
     font-family: 'JetBrains Mono', monospace;
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: #e5e5e5;
-    padding-top: 1.5rem;
+    background-color: var(--color-code-inline-bg);
+    color: var(--color-primary) !important;
   }
-  
-  :root:not(.light) .prose p {
-    color: #ababab;
-    line-height: 1.8;
-  }
-  
-  :root:not(.light) .prose code {
-    font-family: 'JetBrains Mono', monospace;
-    color: #02e600;
-    background-color: #131313;
-  }
-  
-  :root:not(.light) .prose blockquote {
-    background-color: #131313;
-    border-color: #02e600;
-    font-style: italic;
-    font-family: 'JetBrains Mono', monospace;
-    color: #ababab;
-  }
-  
-  :root.light .prose {
-    color: rgba(27, 27, 27, 0.9);
-  }
-  
-  :root.light .prose h2 {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: #1b1b1b;
-    padding-top: 1.5rem;
-  }
-  
-  :root.light .prose p {
-    color: #474747;
-    line-height: 1.8;
-  }
-  
-  :root.light .prose code {
-    font-family: 'JetBrains Mono', monospace;
-    color: #026e00;
-    background-color: #f3f3f3;
-  }
-  
-  :root.light .prose blockquote {
-    background-color: #f3f3f3;
-    border-color: #026e00;
-    font-style: italic;
-    font-family: 'JetBrains Mono', monospace;
-    color: #474747;
+
+  .prose blockquote {
+    background-color: var(--color-code-inline-bg);
   }
 </style>

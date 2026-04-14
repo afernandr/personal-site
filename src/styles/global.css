@@ -1,8 +1,20 @@
 @tailwind base;
+
+@property --tw-prose-bold {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: inherit;
+}
 @tailwind components;
 @tailwind utilities;
 
+@plugin "@tailwindcss/typography";
+
 @layer base {
+  :root.dark .prose pre code span {
+    color: var(--shiki-dark) !important;
+  }
+
   :root {
     --color-surface: #282828;
     --color-surface-container: #32302c;
@@ -14,6 +26,10 @@
     --color-primary: #b8bb26;
     --color-primary-fixed: #b8bb26;
     --color-outline: #928374;
+    --color-code-inline-bg: #1a1a1a;
+    --color-code-block-bg: #1a1a1a;
+    --color-code-text: #02e600;
+    --tw-prose-bold: var(--color-on-surface);
   }
 
   .light {
@@ -27,5 +43,9 @@
     --color-primary: #6b8e6b;
     --color-primary-fixed: #6b8e6b;
     --color-outline: #9b958e;
+    --color-code-inline-bg: #f3f3f3;
+    --color-code-block-bg: #f3f3f3;
+    --color-code-text: #026e00;
+    --tw-prose-bold: var(--color-on-surface);
   }
 }
