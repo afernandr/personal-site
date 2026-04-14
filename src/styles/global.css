@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@config "../../tailwind.config.mjs";
 
 @theme {
   --color-surface: #282828;
@@ -15,6 +16,10 @@
   --color-code-inline-bg: #1a1a1a;
   --color-code-block-bg: #1a1a1a;
   --color-code-text: #02e600;
+
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 }
 
 .light {
