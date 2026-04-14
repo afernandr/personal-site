@@ -5,8 +5,6 @@ date: 2026-04-06
 tags: ["webdev", "tutorial", "beginners"]
 ---
 
-# Getting Started with Modern Web Development
-
 Web development has evolved significantly over the past few years. In this post, I'll walk you through the essential concepts and tools you need to build modern, performant websites.
 
 ## Why Astro?

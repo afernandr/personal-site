@@ -5,8 +5,6 @@ date: 2026-03-15
 tags: ["architecture", "design", "software"]
 ---
 
-# The Art of Software Architecture
-
 Good software architecture is about making decisions that balance immediate needs with future maintainability. In this article, we'll explore some fundamental principles that can guide these decisions.
 
 ## Separation of Concerns
@@ -19,9 +17,9 @@ One of the most important principles in software design is the separation of con
 ┌─────────────────────────────┐
 │     Presentation Layer      │
 ├─────────────────────────────┤
-│     Business Logic         │
+│     Business Logic          │
 ├─────────────────────────────┤
-│       Data Layer           │
+│       Data Layer            │
 └─────────────────────────────┘
 ```
 
