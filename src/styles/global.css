@@ -11,10 +11,6 @@
 @plugin "@tailwindcss/typography";
 
 @layer base {
-  :root.dark .prose pre code span {
-    color: var(--shiki-dark) !important;
-  }
-
   :root {
     --color-surface: #282828;
     --color-surface-container: #32302c;
