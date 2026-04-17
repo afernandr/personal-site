@@ -1,13 +1,19 @@
 {
-	"compatibility_date": "2026-04-14",
-	"compatibility_flags": ["global_fetch_strictly_public"],
-	"name": "personal-site",
-	"main": "@astrojs/cloudflare/entrypoints/server",
-	"assets": {
-		"directory": "./dist",
-		"binding": "ASSETS"
-	},
-	"observability": {
-		"enabled": true
-	}
+  "compatibility_date": "2026-04-14",
+  "compatibility_flags": ["global_fetch_strictly_public"],
+  "name": "personal-site",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+  },
+  "observability": {
+    "enabled": true,
+  },
+  "send_email": [
+    {
+      "name": "SEND_EMAIL",
+      "destination_address": "contact@andresfernandez.work",
+    },
+  ],
 }
