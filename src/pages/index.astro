@@ -1,6 +1,7 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
 import Tag from "../components/Tag.astro";
+import ContactModal from "../components/ContactModal.astro";
 
 const competencies = [
     {
@@ -77,6 +78,7 @@ const projects = [
                             <span>VIEW_PROJECTS</span>
                         </button>
                         <button
+                            id="contact-btn"
                             class="px-4 py-2 bg-surface-container light:bg-light-surface-container text-on-surface light:text-light-on-surface font-mono text-sm uppercase tracking-wider rounded border border-outline/50 hover:border-primary light:hover:border-light-primary transition-colors"
                         >
                             [ CONTACT_ME ]
@@ -148,4 +150,11 @@ const projects = [
             </div>
         </div>
     </section>
+    <ContactModal isOpen={false} />
 </PageLayout>
+
+<script>
+    document.getElementById("contact-btn")?.addEventListener("click", () => {
+        (document.getElementById("contact-modal") as HTMLDialogElement)?.showModal();
+    });
+</script>

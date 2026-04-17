@@ -18,5 +18,11 @@
       "type": "local",
       "command": ["npx", "-y", "chrome-devtools-mcp@latest"]
     }
+  },
+  "permission": {
+    "skill": {
+      "*": "deny",
+      "karpathy-guidelines": "allow"
+    }
   }
 }

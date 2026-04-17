@@ -2,7 +2,7 @@
 const navItems = [
   { href: '/', label: 'Home' },
   { href: '/blog', label: 'Blog' },
-  { href: '#contact', label: 'Contact' },
+  { action: 'openContactModal', label: 'Contact' },
 ];
 ---
 
@@ -16,12 +16,21 @@ const navItems = [
       <ul class="desktop-nav items-center gap-6">
         {navItems.map((item) => (
           <li>
-            <a 
-              href={item.href} 
-              class="font-mono font-semibold text-sm text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors"
-            >
-              [{item.label}]
-            </a>
+            {'action' in item ? (
+              <button 
+                data-contact-action
+                class="font-mono font-semibold text-sm text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors"
+              >
+                [{item.label}]
+              </button>
+            ) : (
+              <a 
+                href={item.href} 
+                class="font-mono font-semibold text-sm text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors"
+              >
+                [{item.label}]
+              </a>
+            )}
           </li>
         ))}
       </ul>
@@ -58,12 +67,21 @@ const navItems = [
 <div id="mobile-menu" class="fixed inset-0 z-40 bg-surface/95 backdrop-blur-sm hidden">
   <nav class="h-full flex flex-col items-center justify-center gap-8">
     {navItems.map((item) => (
-      <a 
-        href={item.href} 
-        class="mobile-nav-link font-mono font-semibold text-2xl text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors"
-      >
-        [{item.label}]
-      </a>
+      'action' in item ? (
+        <button 
+          data-contact-action
+          class="mobile-nav-link font-mono font-semibold text-2xl text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors"
+        >
+          [{item.label}]
+        </button>
+      ) : (
+        <a 
+          href={item.href} 
+          class="mobile-nav-link font-mono font-semibold text-2xl text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors"
+        >
+          [{item.label}]
+        </a>
+      )
     ))}
   </nav>
 </div>
@@ -132,6 +150,14 @@ const navItems = [
     link.addEventListener('click', () => {
       closeMenu();
       updateMenuIcons();
+    });
+  });
+
+  document.querySelectorAll('[data-contact-action]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      closeMenu();
+      updateMenuIcons();
+      (document.getElementById('contact-modal') as HTMLDialogElement)?.showModal();
     });
   });
   
