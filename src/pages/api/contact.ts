@@ -17,37 +17,47 @@ export const OPTIONS: APIRoute = async () => {
 export const POST: APIRoute = async ({ request }) => {
   const contentType = request.headers.get("Content-Type") || "";
   console.log("Content-Type header:", contentType);
-  
-  const isFormData = contentType.includes("application/x-www-form-urlencoded") || 
-                     contentType.includes("multipart/form-data");
-  
+
+  const isFormData =
+    contentType.includes("application/x-www-form-urlencoded") ||
+    contentType.includes("multipart/form-data");
+
   if (!isFormData) {
     console.log("FAIL: Invalid content type, got:", contentType);
-    return new Response(JSON.stringify({ error: "Invalid content type", received: contentType }), {
-      status: 400,
-      headers: { 
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
+    return new Response(
+      JSON.stringify({ error: "Invalid content type", received: contentType }),
+      {
+        status: 400,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
       },
-    });
+    );
   }
 
   try {
     const formData = await request.formData();
     console.log("FormData parsed successfully");
-    
+
     const name = formData.get("name")?.toString().trim();
     const email = formData.get("email")?.toString().trim();
     const message = formData.get("message")?.toString().trim();
-    
+
     console.log("Fields:", { name, email, messageLength: message?.length });
 
     if (!name || !email || !message) {
       console.log("FAIL: Missing fields");
-      return new Response(JSON.stringify({ error: "All fields are required" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
-      });
+      return new Response(
+        JSON.stringify({ error: "All fields are required" }),
+        {
+          status: 400,
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        },
+      );
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -55,39 +65,56 @@ export const POST: APIRoute = async ({ request }) => {
       console.log("FAIL: Invalid email");
       return new Response(JSON.stringify({ error: "Invalid email address" }), {
         status: 400,
-        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
       });
     }
 
     const emailBody = `New contact form submission
 
-Name: ${name}
-Email: ${email}
-Message: ${message}
+From: ${name} <${email}>
+
+Message:
+${message}
 `;
 
     console.log("Attempting to send email...");
-    const senderAddress = `contact@andresfernandez.work`;
-    
+    const senderAddress = `website@andresfernandez.work`;
+    const destinationAddress = `contact@andresfernandez.work`;
     const sendEmail = cloudflareEnv.SEND_EMAIL;
-    
+
     await sendEmail.send({
-      to: senderAddress,
+      to: destinationAddress,
       from: senderAddress,
-      subject: `Contact from ${name} (${email})`,
+      replyTo: email,
+      subject: `Contact from ${name}`,
       text: emailBody,
     });
 
     console.log("Email sent successfully!");
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
-      headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
     });
   } catch (error) {
     console.error("Email send error:", error);
-    return new Response(JSON.stringify({ error: "Failed to send message", details: String(error) }), {
-      status: 500,
-      headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
-    });
+    return new Response(
+      JSON.stringify({
+        error: "Failed to send message",
+        details: String(error),
+      }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      },
+    );
   }
 };
