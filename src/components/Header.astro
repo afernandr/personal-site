@@ -19,7 +19,7 @@ const navItems = [
             {'action' in item ? (
               <button 
                 data-contact-action
-                class="font-mono font-semibold text-sm text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors"
+                class="font-mono font-semibold text-sm text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors cursor-pointer"
               >
                 [{item.label}]
               </button>
@@ -37,7 +37,7 @@ const navItems = [
       
       <button 
         id="theme-toggle"
-        class="w-8 h-8 flex items-center justify-center text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors"
+        class="w-8 h-8 flex items-center justify-center text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors cursor-pointer"
         aria-label="Toggle theme"
       >
         <svg class="w-4 h-4 dark-icon" fill="currentColor" viewBox="0 0 24 24">
@@ -50,7 +50,7 @@ const navItems = [
 
       <button 
         id="menu-toggle"
-        class="md:hidden w-8 h-8 flex items-center justify-center text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors"
+        class="md:hidden w-8 h-8 flex items-center justify-center text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors cursor-pointer"
         aria-label="Toggle menu"
       >
         <svg class="w-5 h-5 menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -70,7 +70,7 @@ const navItems = [
       'action' in item ? (
         <button 
           data-contact-action
-          class="mobile-nav-link font-mono font-semibold text-2xl text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors"
+          class="mobile-nav-link font-mono font-semibold text-2xl text-on-surface-variant light:text-light-on-surface-variant hover:text-primary light:hover:text-light-primary transition-colors cursor-pointer"
         >
           [{item.label}]
         </button>
