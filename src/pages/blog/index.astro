@@ -2,6 +2,7 @@
 import PageLayout from '../../layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
 import Tag from '../../components/Tag.astro';
+import ContactModal from '../../components/ContactModal.astro';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -68,4 +69,5 @@ const posts = (await getCollection('blog')).sort(
       </div>
     </div>
   </section>
+  <ContactModal isOpen={false} />
 </PageLayout>

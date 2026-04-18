@@ -3,6 +3,7 @@ export const prerender = true;
 import PageLayout from '../../layouts/PageLayout.astro';
 import { getCollection, render } from 'astro:content';
 import Tag from '../../components/Tag.astro';
+import ContactModal from '../../components/ContactModal.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -105,6 +106,7 @@ const postId = `AF_POST_082`;
       </article>
     </section>
   </main>
+  <ContactModal isOpen={false} />
 </PageLayout>
 
 <style is:global>
