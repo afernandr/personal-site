@@ -13,7 +13,6 @@
   "send_email": [
     {
       "name": "SEND_EMAIL",
-      "destination_address": "${DESTINATION_EMAIL}",
     },
   ],
 }
