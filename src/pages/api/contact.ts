@@ -81,8 +81,8 @@ ${message}
 `;
 
     console.log("Attempting to send email...");
-    const senderAddress = `website@andresfernandez.work`;
-    const destinationAddress = `contact@andresfernandez.work`;
+    const senderAddress = "website@andresfernandez.work";
+    const destinationAddress = cloudflareEnv.DESTINATION_EMAIL;
     const sendEmail = cloudflareEnv.SEND_EMAIL;
 
     console.log("SEND_EMAIL binding exists:", !!sendEmail);
