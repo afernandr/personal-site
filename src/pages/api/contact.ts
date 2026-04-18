@@ -85,13 +85,27 @@ ${message}
     const destinationAddress = `contact@andresfernandez.work`;
     const sendEmail = cloudflareEnv.SEND_EMAIL;
 
-    await sendEmail.send({
-      to: destinationAddress,
+    console.log("SEND_EMAIL binding exists:", !!sendEmail);
+    console.log("Sending email:", {
       from: senderAddress,
+      to: destinationAddress,
       replyTo: email,
       subject: `Contact from ${name}`,
-      text: emailBody,
     });
+
+    try {
+      await sendEmail.send({
+        to: destinationAddress,
+        from: senderAddress,
+        replyTo: email,
+        subject: `Contact from ${name}`,
+        text: emailBody,
+      });
+      console.log("Email sent successfully!");
+    } catch (sendError) {
+      console.error("SEND_EMAIL.send() failed:", sendError);
+      throw sendError;
+    }
 
     console.log("Email sent successfully!");
     return new Response(JSON.stringify({ success: true }), {
