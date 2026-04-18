@@ -13,7 +13,7 @@
   "send_email": [
     {
       "name": "SEND_EMAIL",
-      "destination_address": "contact@andresfernandez.work",
+      "destination_address": "${DESTINATION_EMAIL}",
     },
   ],
 }
